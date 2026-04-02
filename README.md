@@ -1,4 +1,4 @@
-# Linksy~
+# Linksy
 
 ## Table of Contents
 
