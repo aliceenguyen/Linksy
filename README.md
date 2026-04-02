@@ -8,7 +8,7 @@
 
 ## About
 
-**netflow** is a web application designed to facilitate a unique networking experience using personality and preference matching.
+**Linksy** is a web application designed to facilitate a unique networking experience using personality and preference matching.
 
 ## Features
 
