@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friendship Quiz</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tagesschrift&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="{{ url_for('home') }}"  class="logo-text">
+      Linksy
+    </a>
+    <form id="friendship-quiz-form" method="POST" action="{{ url_for('friendship_quiz') }}">
+        <!-- Name and Discord Handle -->
+        <div class="form-group">
+          <p>Your Name</p>
+          <input type="text" name="name" required>
+        </div>
+        <div class="form-group">
+          <p>Discord Handle</p>
+          <input type="text" name="discord" required>
+        </div>
+        <!-- Question 1 -->
+        <div class="form-group">
+          <p>1. Your MBTI?</p>
+          <input type="text" name="mbti" minlength="4" maxlength="4" required>
+        </div class="form-group">
+        <!-- Question 2 -->
+        <div class="form-group">
+          <p>2. Your gender:</p>
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female" required> Female</label>
+          <label><input type="radio" name="gender" value="Other" required> Other</label>
+        </div class="form-group">
+        <!-- Question 3 -->
+        <div class="form-group">
+          <p>3. What gender would you prefer to be matched with? (Select all that apply)</p>
+          <label><input type="checkbox" name="preferred-gender" value="Male"> Male</label>
+          <label><input type="checkbox" name="preferred-gender" value="Female"> Female</label>
+          <label><input type="checkbox" name="preferred-gender" value="Other"> Other</label>
+        </div>
+        
+        <!-- Question 4 -->
+        <div class="form-group">
+          <p>4. Are you a conversationalist or listener?</p>
+          <label><input type="radio" name="communication-style" value="Conversationalist" required> Conversationalist</label>
+          <label><input type="radio" name="communication-style" value="Listener" required> Listener</label>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="form-group">
+          <p>5. What type of activities do you enjoy most on a free weekend?</p>
+          <label><input type="radio" name="weekend-activity" value="Active" required> Active <span style="font-size: 16px; color: #ffffff;">(sports, hiking, camping, etc.)</span></label>
+          <label><input type="radio" name="weekend-activity" value="Chill" required> Chill <span style="font-size: 16px; color: #ffffff;">(catch up on sleep, movie, study, painting, etc.)</span></label>
+          <label><input type="radio" name="weekend-activity" value="Spontaneous" required> Anything spontaneous and fun</label>
+          <label><input type="radio" name="weekend-activity" value="Friends" required> Hanging out with friends</label>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="form-group">
+          <p>6. Would you rather have more money or more freedom?</p>
+          <label><input type="radio" name="preference" value="Money" required> Money</label>
+          <label><input type="radio" name="preference" value="Freedom" required> Freedom</label>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="form-group">
+          <p>7. Select your top 3 movie genres</p>
+          <label><input type="checkbox" name="movie-genres" value="Action/Adventure"> Action/Adventure</label>
+          <label><input type="checkbox" name="movie-genres" value="Drama"> Drama</label>
+          <label><input type="checkbox" name="movie-genres" value="Comedy"> Comedy</label>
+          <label><input type="checkbox" name="movie-genres" value="Sci Fi/Fantasy"> Sci Fi/Fantasy</label>
+          <label><input type="checkbox" name="movie-genres" value="Horror/Thriller"> Horror/Thriller</label>
+          <label><input type="checkbox" name="movie-genres" value="Anime"> Anime</label>
+        </div>
+
+        <!-- Question 8 -->
+        <div class="form-group">
+          <p>8. How often do you party?</p>
+          <label><input type="radio" name="party-frequency" value="Usually" required> Usually</label>
+          <label><input type="radio" name="party-frequency" value="Sometimes" required> Sometimes</label>
+          <label><input type="radio" name="party-frequency" value="Rarely" required> Rarely</label>
+          <label><input type="radio" name="party-frequency" value="Never" required> Never</label>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="form-group">
+          <p>9. What are the top 3 components to a good relationship?</p>
+          <label><input type="checkbox" name="relationship-components" value="Trust"> Trust <span style="font-size: 16px; color: #ffffff;">(Placing trust in your partner and giving them the benefit of the doubt)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Communication"> Communication <span style="font-size: 16px; color: #ffffff;">(Being able to share your perspective and have it value)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Respect"> Respect <span style="font-size: 16px; color: #ffffff;">(Valuing your partner and understanding their boundaries)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Intimacy"> Intimacy <span style="font-size: 16px; color: #ffffff;">(Being willing to make shared decisions and honor your partner's needs)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Support"> Support <span style="font-size: 16px; color: #ffffff;">(Being there for your partner and offering support when they need it)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Flexibility"> Flexibility <span style="font-size: 16px; color: #ffffff;">(Being able to adapt to change and adjust to your partner's need)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Fun"> Fun <span style="font-size: 16px; color: #ffffff;">(Being able to laugh and enjoy each other's company)</span></label>
+          <label><input type="checkbox" name="relationship-components" value="Independence"> Independence <span style="font-size: 16px; color: #ffffff;">(Having your own identity and space)</span></label>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="form-group">
+          <p>10. Do you believe in fate - something that is meant to be?</p>
+          <label><input type="radio" name="fate" value="Yes" required> Yes</label>
+          <label><input type="radio" name="fate" value="Depends" required> Hmm, depends</label>
+          <label><input type="radio" name="fate" value="Nonsense" required> Nonsense</label>
+        </div>
+
+        <!-- New Question: Message to Your Match -->
+        <div class="form-group">
+          <p>Message to your match (Optional)</p>
+          <textarea name="message" rows="4" cols="50" placeholder="Write a message to your match..."></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div style="text-align: center; margin-top: 20px;">
+          <button type="submit" class="button">Submit</button>
+        </div>
+      </form>
+      
+  </div>
+  <script src="{{ url_for('static', filename='js/friendship-quiz.js') }}"></script>
+</body>
+</html>

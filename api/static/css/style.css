@@ -1,0 +1,310 @@
+:root {
+  --pink-1: #fcd8d8;
+  --pink-2: #ffdddd;
+  --pink-3: #ffdcda;
+  --pink-4: #ffd1d1;
+  --pink-5: #f1c3c3;
+  --pink-6: #604E4E;
+  --white-soft: rgba(255, 255, 255, 0.08);
+  --white-border: rgba(255, 255, 255, 0.18);
+  --white-input: rgba(255, 255, 255, 0.06);
+  --white-text: rgba(255, 255, 255, 0.95);
+}
+
+/* ----------------------------------------
+   1. RESET & BASE STYLES
+---------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'PT Serif', sans-serif;
+  background: url("/static/images/bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: var(--white-text);
+  line-height: 1.6;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ----------------------------------------
+   2. CONTAINER / LOGIN BOX
+---------------------------------------- */
+.container {
+  width: 95%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+
+  background: var(--white-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid var(--white-border);
+  border-radius: 24px;
+
+  box-shadow:
+    0 8px 32px rgba(31, 38, 135, 0.25),
+    inset 0 0 20px rgba(255, 255, 255, 0.04);
+}
+
+/* ----------------------------------------
+   3. LOGO / TITLE
+---------------------------------------- */
+.logo-text {
+  font-family: 'Lato', sans-serif;
+  display: block;
+  margin: 0 auto 1rem;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  text-align: center;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
+}
+
+.logo-text::before,
+.logo-text::after {
+  content: "✨";
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0;
+  animation: sparkle 2s infinite ease-in-out;
+}
+
+.logo-text::before {
+  top: -10px;
+  left: 18%;
+  animation-delay: 0s;
+}
+
+.logo-text::after {
+  bottom: -8px;
+  right: 18%;
+  animation-delay: 1s;
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-5px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) translateY(0);
+  }
+}
+
+.logo-text:hover {
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.45),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* ----------------------------------------
+   4. TYPOGRAPHY
+---------------------------------------- */
+h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1.75rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+h2, h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: var(--white-text);
+  text-align: center;
+}
+
+/* ----------------------------------------
+   5. FORM
+---------------------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.95rem 1.1rem;
+  font-size: 1rem;
+
+  background: var(--white-input);
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  margin-bottom: 1rem;
+  transition: 0.2s ease;
+}
+
+textarea {
+  border-radius: 16px;
+  resize: vertical;
+  min-height: 120px;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 12px rgba(241, 238, 238, 0.12);
+}
+
+/* ----------------------------------------
+   6. LOGIN OPTIONS
+---------------------------------------- */
+.login-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0.25rem 0 1.25rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.login-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+  color: #ffffff;
+}
+
+.login-options input[type="checkbox"] {
+  width: auto;
+  margin: 0;
+  accent-color: #ffffff;
+}
+
+.login-options a,
+.register-text a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-options a:hover,
+.register-text a:hover {
+  text-decoration: none;
+}
+
+/* ----------------------------------------
+   7. BUTTONS
+---------------------------------------- */
+.button,
+.login-btn {
+  font-family: 'PT Serif', sans-serif;
+  display: block;
+  width: 100%;
+  max-width: none;
+
+  padding: 1rem 1.5rem;
+  margin: 0.75rem auto 0;
+
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: center;
+
+  color: #4b2bbd;
+  background: #ffffff;
+
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.button:hover,
+.login-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.18);
+}
+
+.button:active,
+.login-btn:active {
+  transform: translateY(0);
+}
+
+/* ----------------------------------------
+   8. REGISTER TEXT
+---------------------------------------- */
+.register-text {
+  text-align: center;
+  margin-top: 1.25rem;
+  color: #ffffff;
+}
+
+/* ----------------------------------------
+   9. RESPONSIVE
+---------------------------------------- */
+@media (max-width: 768px) {
+  body {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .container {
+    padding: 2rem 1.25rem;
+    border-radius: 20px;
+  }
+
+  h1 {
+    font-size: 2.4rem;
+  }
+
+  .logo-text {
+    font-size: clamp(2rem, 10vw, 3.2rem);
+  }
+
+  .login-options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

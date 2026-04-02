@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finding Your Match</title>
+  <!-- Inter + your neutral style -->
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tagesschrift&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <a href="{{ url_for('home') }}" class="logo-text">
+      Linksy
+    </a>
+
+    <p class="head-text">
+      We’re finding your match<span class="loading-dots"></span>
+    </p>
+
+    <div class="text-center mb-1">
+      <button id="refresh-btn" class="button">Refresh</button>
+    </div>
+
+    <p class="body-text mb-1">
+      Matches will be released in approx 30 minutes. While you wait, check out our
+      activities:
+    </p>
+    <p class="body-text mb-0">
+      <strong>@CnD:</strong> Chocolate Fondue, Pin Making, Jenga
+    </p>
+    <p class="body-text">
+      <strong>@MC Comfy:</strong> Mocktails, Karaoke/Talent Show (win a boba date!), CupPong,
+      PhotoBooth
+    </p>
+  </div>
+
+  <script>
+    document
+      .getElementById("refresh-btn")
+      .addEventListener("click", () => {
+        fetch("/check_result")
+          .then((res) => {
+            if (!res.ok) throw new Error(res.statusText);
+            return res.json();
+          })
+          .then((data) => {
+            if (data.matches_exist) {
+              window.location.href = "{{ url_for('pre_result') }}";
+            } else {
+              window.location.href = "{{ url_for('waiting') }}";
+            }
+          })
+          .catch((err) => {
+            console.error("Fetch error:", err);
+            alert("Something went wrong. Please try again later.");
+          });
+      });
+  </script>
+</body>
+</html>

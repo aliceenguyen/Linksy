@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Host</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tagesschrift&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <a href="{{ url_for('home') }}" class="logo-text">
+      Linksy
+    </a>
+
+    <div id="password-section" class="card">
+      <div class="form-group">
+        <label for="password">Enter Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          required
+        >
+      </div>
+
+      <div class="text-center">
+        <button type="button" class="button" onclick="checkPassword()">
+          Continue as Host
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/host.js') }}"></script>
+</body>
+</html>

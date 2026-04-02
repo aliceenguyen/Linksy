@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Match</title>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Tagesschrift&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- floating‐name styles (you can move these into style.css if you like) -->
+  <style>
+    .floating-name {
+      position: absolute;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.25rem;
+      opacity: 0.5;
+      animation: float 25s linear infinite;
+    }
+    @keyframes float {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(50px, 80px); }
+      50%  { transform: translate(-50px, 140px); }
+      75%  { transform: translate(-80px, 60px); }
+      100% { transform: translate(0, 0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container position-relative">
+    <a href="{{ url_for('home') }}" class="logo-text">
+      Linksy
+    </a>
+
+
+    <div class="card">
+      <h2 class="text-center mb-1">Your Match Results</h2>
+
+      {% if match_name and match_name != "dummy" %}
+        <p class="body-text text-center">
+          🎉 You’ve been matched with <strong>{{ match_name }}</strong>!
+        </p>
+        <p class="body-text text-center">
+          Discord: <strong>{{ match_discord }}</strong>
+        </p>
+        {% if match_message %}
+          <p class="body-text text-center"><em>"{{ match_message }}"</em></p>
+        {% endif %}
+      {% else %}
+        <p class="body-text text-center">
+          Sorry, we couldn't find a match today. Come see us in person for a free hug!
+        </p>
+      {% endif %}
+
+      <hr>
+
+      <p class="body-text text-center mb-0">
+        Current Gender Distribution:
+      </p>
+      <p class="body-text text-center">
+        Male: {{ gender_ratio['Male'] }}% | 
+        Female: {{ gender_ratio['Female'] }}% | 
+        Other: {{ gender_ratio['Other'] }}%
+      </p>
+      <p class="body-text text-center" style="font-size: 0.875rem; color: #777;">
+        * If we couldn’t meet your preference, it’s due to the current pool.
+      </p>
+    </div>
+
+    <!-- Floating names animation -->
+    <script>
+      const names = JSON.parse('{{ names|tojson|safe }}').filter(n => n !== 'dummy');
+      const container = document.querySelector('.container');
+      const positions = [
+        { top: '10%', left: '15%' },
+        { top: '20%', left: '80%' },
+        { top: '65%', left: '25%' },
+        { top: '50%', left: '75%' },
+        { top: '40%', left: '40%' },
+        { top: '80%', left: '60%' }
+      ];
+      names.forEach((name, i) => {
+        const el = document.createElement('div');
+        el.className = 'floating-name';
+        el.textContent = name;
+        el.style.top = positions[i % positions.length].top;
+        el.style.left = positions[i % positions.length].left;
+        container.appendChild(el);
+      });
+    </script>
+  </div>
+</body>
+</html>
